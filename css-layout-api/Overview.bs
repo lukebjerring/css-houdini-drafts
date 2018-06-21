@@ -825,12 +825,12 @@ interface ChildBreakToken {
 
 [Exposed=LayoutWorklet]
 interface BreakToken {
-    readonly attribute sequence&lt;ChildBreakToken> childBreakTokens;
+    readonly attribute iterable&lt;ChildBreakToken> childBreakTokens;
     readonly attribute any data;
 };
 
 dictionary BreakTokenOptions {
-    sequence&lt;ChildBreakToken> childBreakTokens;
+    iterable&lt;ChildBreakToken> childBreakTokens;
     any data = null;
 };
 
@@ -1426,12 +1426,12 @@ is called, the user agent <em>must</em> run the following steps:
     3. If |layoutDefinitionMap|[|name|] <a for=map>exists</a> <a>throw</a> a
         "<a>InvalidModificationError</a>" <a>DOMException</a> and abort all these steps.
 
-    4. Let |inputProperties| be an empty <code>sequence&lt;DOMString></code>.
+    4. Let |inputProperties| be an empty <code>iterable&lt;DOMString></code>.
 
     5. Let |inputPropertiesIterable| be the result of <a>Get</a>(|layoutCtor|, "inputProperties").
 
     6. If |inputPropertiesIterable| is not undefined, then set |inputProperties| to the result of
-        <a>converting</a> |inputPropertiesIterable| to a <code>sequence&lt;DOMString></code>. If an
+        <a>converting</a> |inputPropertiesIterable| to a <code>iterable&lt;DOMString></code>. If an
         exception is <a>thrown</a>, rethrow the exception and abort all these steps.
 
         Note: The list of CSS properties provided by the input properties getter can either be
@@ -1443,14 +1443,14 @@ is called, the user agent <em>must</em> run the following steps:
             also contains currently invalid properties for the user agent. For example
             <code>margin-bikeshed-property</code>.
 
-    7. Let |childInputProperties| be an empty <code>sequence&lt;DOMString></code>.
+    7. Let |childInputProperties| be an empty <code>iterable&lt;DOMString></code>.
 
     8. Let |childInputPropertiesIterable| be the result of <a>Get</a>(|layoutCtor|,
         "childInputProperties").
 
     9. If |childInputPropertiesIterable| is not undefined, then set |childInputProperties| to the
         result of <a>converting</a> |childInputPropertiesIterable| to a
-        <code>sequence&lt;DOMString></code>. If an exception is <a>thrown</a>, rethrow the exception
+        <code>iterable&lt;DOMString></code>. If an exception is <a>thrown</a>, rethrow the exception
         and abort all these steps.
 
     10. Let |layoutOptionsValue| be the result of <a>Get</a>(|layoutCtor|, "layoutOptions").
@@ -1679,7 +1679,7 @@ dictionary FragmentResultOptions {
     double inlineSize = 0;
     double blockSize = 0;
     double autoBlockSize = 0;
-    sequence&lt;LayoutFragment> childFragments = [];
+    iterable&lt;LayoutFragment> childFragments = [];
     any data = null;
     BreakTokenOptions breakToken = null;
 };
@@ -2077,7 +2077,7 @@ When the user agent wants to <dfn>run a generator</dfn> given |generator|, and |
             1. Set |results| to be a new <a for=list>empty</a> <a>list</a>.
 
             2. Let |requests| be the result of <a>converting</a> |requestOrRequests| to a
-                <code>sequence&lt;LayoutFragmentRequestOrIntrinsicSizesRequest></code>.
+                <code>iterable&lt;LayoutFragmentRequestOrIntrinsicSizesRequest></code>.
 
                 If an exception is <a>thrown</a>, rethrow the exception and abort all these steps.
 
